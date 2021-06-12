@@ -8,9 +8,9 @@ class StockMaximize {
 
         while !copyOfPrices.isEmpty {
             let saveCopy = copyOfPrices
-            let maxPrice = copyOfPrices.max()
+            guard let maxPrice = copyOfPrices.max() else { return 0}
             var moneySpent = 0
-            let indexOfMax = Int(copyOfPrices.firstIndex(of: maxPrice!) ?? 0)
+            let indexOfMax = Int(copyOfPrices.firstIndex(of: maxPrice) ?? 0)
             if indexOfMax != 0 {
                 for _ in 0...indexOfMax - 1 {
                     moneySpent += copyOfPrices[0]
