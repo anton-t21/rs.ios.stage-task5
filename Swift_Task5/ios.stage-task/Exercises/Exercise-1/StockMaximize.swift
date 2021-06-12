@@ -3,6 +3,24 @@ import Foundation
 class StockMaximize {
 
     func countProfit(prices: [Int]) -> Int {
-        return -1
+        var copyOfPrices = prices
+        var maxProfit = 0
+
+        while !copyOfPrices.isEmpty {
+            let saveCopy = copyOfPrices
+            let maxPrice = copyOfPrices.max()
+            var moneySpent = 0
+            let indexOfMax = Int(copyOfPrices.firstIndex(of: maxPrice!) ?? 0)
+            if indexOfMax != 0 {
+                for _ in 0...indexOfMax - 1 {
+                    moneySpent += copyOfPrices[0]
+                    copyOfPrices.remove(at: 0)
+                }
+                maxProfit = maxProfit + indexOfMax * saveCopy[indexOfMax] - moneySpent
+            } else {
+                copyOfPrices.remove(at: 0)
+            }
+        }
+        return maxProfit
     }
 }
