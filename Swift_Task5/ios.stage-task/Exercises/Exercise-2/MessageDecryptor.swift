@@ -21,8 +21,6 @@ class MessageDecryptor: NSObject {
                     insertStr += String(array[newStartIndex])
                     newStartIndex += 1
                 }
-                
-                //how much time to repeat str
 
                 let thirdNumber  = String(array[startIndex - 1])
                 var secondNumber = ""
@@ -35,7 +33,6 @@ class MessageDecryptor: NSObject {
                 }
                 guard let count = Int(firstNumber + secondNumber + thirdNumber) else { return insertStr }
 
-                //                guard let count = Int(String(array[startIndex - 1])) else { return insertStr }
                 var newInsertStr = insertStr
                 if count > 1 && count < 10 {
                     for _ in 1...count - 1 {
@@ -105,18 +102,20 @@ class MessageDecryptor: NSObject {
                         }
                     }
                 }
-
-                //Mark: - turning point
-
                 if startIndex > 0 {
                     var prevSymb = array[startIndex - 1]
                     if prevSymb.isNumber {
                         startIndex -= 1
                         if startIndex > 0 {
-
                             prevSymb = array[startIndex - 1]
                             if prevSymb.isNumber {
                                 startIndex -= 1
+                                if startIndex > 0 {
+                                    prevSymb = array[startIndex - 1]
+                                    if prevSymb.isNumber {
+                                        startIndex -= 1
+                                    }
+                                }
                             }
                         }
                     } else {
